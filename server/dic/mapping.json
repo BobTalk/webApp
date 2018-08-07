@@ -1,6 +1,6 @@
 {
-  "user_name": "userName",
-  "user_id": "userId",
-  "user_password": "userPassWord",
-  "real_name": "realName"
+  "USER_NAME": "userName",
+  "USER_ID": "userId",
+  "USER_PASSWORD": "userPassWord",
+  "REAL_NAME": "realName"
 }
