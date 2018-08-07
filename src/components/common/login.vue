@@ -7,7 +7,8 @@
     name: "login",
     created() {
       var loginUrl = this.URL.BASEURL + this.URL.LOGIN.USERINFO;
-      this.$axios.get(loginUrl, {}).then(res => {
+      var params = {};
+      this.$axios.get(loginUrl, params).then(res => {
         console.log(res);
       })
     }
