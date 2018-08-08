@@ -1,11 +1,10 @@
 // dao/userSqlMapping.js
 // CRUD SQL语句
 var user = {
-    insert:'INSERT INTO user_info(user_id, user_name, user_password,real_name) VALUES(0,?,?,?)',
-    update:'update user_info set user_name=?, user_password=?,real_name=? where user_id=?',
-    delete: 'delete from user_info where user_id=?',
-    queryById: 'select * from user_info where user_id=?',
-    queryAll: 'select * from user_info'
+    insert:'INSERT INTO USER_INFO(USER_NAME, USER_PASSWORD,REAL_NAME) VALUES(?,?,?)',
+    update:'UPDATE USER_INFO SET USER_NAME=?, USER_PASSWORD=?,REAL_NAME=? WHERE USER_ID=?',
+    delete: 'DELETE FROM USER_INFO WHERE USER_ID=?',
+    queryById: 'SELECT * FROM USER_INFO WHERE USER_ID=?',
+    queryAll: 'SELECT * FROM USER_INFO'
 };
-
 module.exports = user;

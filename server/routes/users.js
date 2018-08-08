@@ -5,5 +5,8 @@ var userService = require("../service/userService");
 router.get('/', function (req, res, next) {
   userService.queryAllService(req, res, next)
 });
+router.post("/add", function (req, res, next) {
+  userService.addUserService(req, res, next)
+});
 
 module.exports = router;

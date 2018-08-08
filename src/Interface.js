@@ -12,8 +12,16 @@ Vue.prototype.URL = {
   BASEURL: BASE + ':3000',//请求的主地址
   LOGIN: {
     USERINFO: "/users"
+  },
+  ADDUSER: {
+    ADDINFO: "/users/add"
   }
 };
+/*axios.interceptors.request.use((config) => {
+  config.headers = {"Content-Type": "application/x-www-from-urlencoded"}
+});
+axios.interceptors.response.use((config) => {
+});*/
 export {
   Vue
 }

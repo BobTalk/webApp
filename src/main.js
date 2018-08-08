@@ -4,7 +4,8 @@ import {Vue} from "./Interface"
 import App from './App'
 import router from './router'
 import "./public/css/font.css"
-Vue.config.productionTip = false
+import "./public/css/reset.css"
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
