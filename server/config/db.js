@@ -9,7 +9,7 @@ let mysqlConfig = {
   database: 'hyq_test',
   port: 3306
 };
-db.query = function (sqlCall, callback) {
+db.query = function (sqlCall, paras, callback) {
   var connection = mysql.createConnection(mysqlConfig);
   connection.connect((err) => {
     if (err) {
@@ -21,7 +21,7 @@ db.query = function (sqlCall, callback) {
   if (!sql) {
     return
   }
-  connection.query(sql, function (err, rows, fields) {
+  connection.query(sql, paras, function (err, rows, fields) {
     if (err) {
       console.log(err);
       return
@@ -37,11 +37,4 @@ db.query = function (sqlCall, callback) {
     }
   })
 };
-/*db.insert = function (sqlCall, callback) {
-  var connection = mysql.createConnection(mysqlConfig);
-  connection.query(sql, params, function (error, results, fields) {
-    if (error) throw error;
-    callback(results.insertId);//返回插入的id
-  });
-};*/
 module.exports = db;

@@ -2,7 +2,7 @@ var userDao = require("../dao/userInfo/userDao");
 var mapping = require("../utils/dataMppingFn");
 module.exports = {
   queryAllService: function (req, res, next) {
-    return userDao.queryAllDao((result) => {
+    return userDao.queryAllDao({},(result) => {
       res.json(mapping.mappingDicQuery(result))
     })
   },
