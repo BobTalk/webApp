@@ -73,8 +73,8 @@
             _this.queryAllUserInfo()
           })
           .catch((err) => {
-          console.log(err);
-        })
+            console.log(err);
+          })
       },
       // 删除用户
       deleteData(userId) {
