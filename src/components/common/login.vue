@@ -2,7 +2,7 @@
   <div class="login">
     <ul class="user-info">
       <li v-for="(item,index) in result" :key="index">
-        <span>{{item.userName}}+" =====> "+{{item.userPassWord}}</span>
+        <span>{{item.userName}}+" -> "+{{item.userPassWord}}+" -> "+{{item.realName}}</span>
         <mt-button type="danger" size="small" @click="deleteData(item.userId)">删除</mt-button>
       </li>
     </ul>
@@ -12,7 +12,7 @@
     </div>
     <div class="password">
       <label>密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-      <input type="password" v-model.trim="userInfo.userPassWord">
+      <input type="password" v-model.trim="userInfo.userPassWord" maxlength="10">
     </div>
     <div class="realname">
       <label>真实名</label>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+  import base from "../../../static/utils/base.js"
+
   export default {
     name: "login",
     data() {
@@ -36,7 +38,7 @@
       }
     },
     created() {
-      this.queryAllUserInfo()
+      this.queryAllUserInfo();
     },
     methods: {
       //查询所有用户信息
@@ -52,10 +54,16 @@
       addData() {
         var _this = this;
         var insertUrl = this.URL.BASEURL + this.URL.ADDUSER.ADDINFO;
-        if (_this.userInfo.userName == "" || _this.userInfo.userPassWord == "") {
+        if (_this.userInfo.userName == "" || _this.userInfo.userName == "undefined") {
           return
         }
+        if (_this.userInfo.userPassWord == "" || _this.userInfo.userPassWord == "undefined") {
+          return
+        }
+
         var params = _this.userInfo;
+        //密码加密
+        params.userPassWord = base.encryptionData(_this.userInfo.userPassWord);
         _this.$axios.post(insertUrl, params)
           .then(res => {
             /*if (window.opener) { //刷新父级页面
@@ -63,7 +71,8 @@
             }*/
             _this.userInfo = {};
             _this.queryAllUserInfo()
-          }).catch((err) => {
+          })
+          .catch((err) => {
           console.log(err);
         })
       },
