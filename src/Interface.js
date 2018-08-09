@@ -1,9 +1,10 @@
 import 'babel-polyfill'
 import Vue from 'vue'
+import Vuex from 'vuex'
 import axios from 'axios'
 import mintUI from 'mint-ui'
 import "mint-ui/lib/style.css"
-
+Vue.use(Vuex);
 Vue.use(mintUI);
 Vue.prototype.$axios = axios;
 window.BASE = "http://127.0.0.1";
@@ -18,10 +19,10 @@ Vue.prototype.URL = {
     DELETEINFO:"/users/delete"
   }
 };
-/*axios.interceptors.request.use((config) => {
-  config.headers = {"Content-Type": "application/x-www-from-urlencoded"}
+axios.interceptors.request.use((config) => {
+
 });
-axios.interceptors.response.use((config) => {
+/*axios.interceptors.response.use((config) => {
 });*/
 export {
   Vue

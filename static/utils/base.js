@@ -1,7 +1,8 @@
 const CryptoJS = require('crypto-js');
+const $myKey = "he1275765531@sohu.com";//密钥
 const $myUtils = {};
 
-function getAesString(data, key, iv) {//加密
+function getAesString(data, key) {//加密
   var key = CryptoJS.enc.Utf8.parse(key);
   var encrypted = CryptoJS.AES.encrypt(data, key,
     {
@@ -25,17 +26,13 @@ function getDAesString(encrypted, key) {//解密
 
 //密码加密
 $myUtils.encryptionData = function (data) {
-  var key = 'he1275765531@sohu.com';  //密钥
-  var iv = key;
-  var encrypted = getAesString(data, key, iv); //密文
+  var encrypted = getAesString(data, $myKey); //密文
   CryptoJS.enc.Utf8.parse(encrypted);
   return encrypted;
 };
 //密码解密
 $myUtils.DecryptData = function (data) {
-  var key = 'he1275765531@sohu.com';  //密钥
-  var iv = key;
-  var decryptedStr = getDAesString(data, key, iv);
+  var decryptedStr = getDAesString(data, $myKey);
   return decryptedStr;
 };
 module.exports = $myUtils;

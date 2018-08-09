@@ -5,12 +5,15 @@ import App from './App'
 import router from './router'
 import "./public/css/font.css"
 import "./public/css/reset.css"
+import store from './store/index';
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  store,
+  components: {App},
   template: '<App/>'
 })

@@ -24,6 +24,7 @@
 
 <script>
   import base from "../../../static/utils/base.js"
+  import {Toast} from 'mint-ui';
 
   export default {
     name: "login",
@@ -55,9 +56,19 @@
         var _this = this;
         var insertUrl = this.URL.BASEURL + this.URL.ADDUSER.ADDINFO;
         if (_this.userInfo.userName == "" || _this.userInfo.userName == "undefined") {
+          Toast({
+            message: "请输入用户名",
+            position: 'middle',
+            duration: 5000
+          });
           return
         }
         if (_this.userInfo.userPassWord == "" || _this.userInfo.userPassWord == "undefined") {
+          Toast({
+            message: "请输入用户密码",
+            position: 'middle',
+            duration: 5000
+          });
           return
         }
 
@@ -69,11 +80,19 @@
             /*if (window.opener) { //刷新父级页面
               window.opener.location.reload()
             }*/
-            _this.userInfo = {};
+            _this.userInfo = {
+              userName: "",
+              userPassWord: "",
+              realName: ""
+            };
             _this.queryAllUserInfo()
           })
           .catch((err) => {
-            console.log(err);
+            _this.Toast({
+              message: err,
+              position: 'bottom',
+              duration: 5000
+            });
           })
       },
       // 删除用户
