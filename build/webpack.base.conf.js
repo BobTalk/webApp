@@ -17,7 +17,8 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
+    filename: '[name].bundle.js',
+    chunkFilename: 'chunk[name].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
@@ -39,7 +40,10 @@ module.exports = {
       {
         test: /\.css$/,
         include: [],
-        loader: 'style-loader!css-loader?modules!postcss-loader&localIdentName=[path][name]--[local]--[hash:base64:5]' //表示打开 CSS Modules 功能 定制哈希字符串的格式
+        loader: 'style-loader!css-loader!postcss-loader&localIdentName=[path][name]--[local]--[hash:base64:5]', //表示打开 CSS Modules 功能 定制哈希字符串的格式
+        options: {
+          modules:true //表示打开 CSS Modules
+        }
       },
       {
         test: /\.js$/,
@@ -83,5 +87,8 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
+  },
+  watchOptions: {
+    ignored:/node_modules/
   }
 }

@@ -11,13 +11,13 @@ const router = new Router({
     {
       path: '/',
       name: 'login',
-      component: login,
+      component:(resolve) => require.ensure([], () => resolve(require("../components/common/login")), 'login'),
       meta: {title: '登录'}
     },
     {
       path: '/search',
       name: 'search',
-      component: search
+      component: (resolve) => require.ensure([], () => resolve(require("../components/pages/search")), 'search')
     }
   ]
 });

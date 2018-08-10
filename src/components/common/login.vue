@@ -71,7 +71,6 @@
           });
           return
         }
-
         var params = _this.userInfo;
         //密码加密
         params.userPassWord = base.encryptionData(_this.userInfo.userPassWord);
