@@ -26,7 +26,7 @@
       },
       //加
       addition() {
-        this.$store.dispatch("addAction",1);
+        this.$store.dispatch("reduceAction",-1);
       }
     }
   }
