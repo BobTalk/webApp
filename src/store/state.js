@@ -2,4 +2,4 @@
 const state = {
   count: 1
 };
-module.exports = state;
+export default state;
