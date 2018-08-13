@@ -9,7 +9,7 @@ let mysqlConfig = {
   database: 'hyq_test',
   port: 3306
 };
-db.query = function (sqlCall, paras, callback) {
+db.query = function (sqlCall, paras = {}, callback) {
   var connection = mysql.createConnection(mysqlConfig);
   connection.connect((err) => {
     if (err) {

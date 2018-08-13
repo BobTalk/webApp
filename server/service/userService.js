@@ -3,7 +3,7 @@ var mapping = require("../utils/dataMppingFn");
 module.exports = {
   //查询全部用户信息
   queryAllService: function (req, res, next) {
-    return userDao.queryAllDao({}, (result) => {
+    return userDao.queryAllDao({},(result) => {
       res.json(mapping.mappingDicQuery(result))
     })
   },
@@ -25,7 +25,7 @@ module.exports = {
   selectUserService: function (req, res, next) {
     var param = req.body || req.params || req.query;
     return userDao.selectUserInfo(mapping.mappingDicInsert(param), (result) => {
-      res.json(result)
+      res.json(mapping.mappingDicQuery(result))
     })
   },
   //修改用户信息

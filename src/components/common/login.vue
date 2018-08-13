@@ -14,7 +14,7 @@
       <label>密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
       <input type="password" v-model.trim="userInfo.userPassWord" maxlength="10">
     </div>
-    <div class="realname">
+    <div class="realname" v-if="loginFlag">
       <label>真实名</label>
       <input type="text" v-model.trim="userInfo.realName">
     </div>
@@ -37,7 +37,8 @@
           userPassWord: '',
           realName: ''
         },
-        loginFlag: true
+        loginFlag: true,
+        addUserInfoFlag: null
       }
     },
     created() {
@@ -65,11 +66,27 @@
       loginUserInfo() {
         var _this = this;
         var selectUrl = this.URL.BASEURL + this.URL.ADDUSER.SELECTUSER;
+        if (_this.userInfo.userName == "" || _this.userInfo.userName == "undefined") {
+          Toast({
+            message: "请输入用户名",
+            position: 'middle',
+            duration: 5000
+          });
+          return
+        }
+        if (_this.userInfo.userPassWord == "" || _this.userInfo.userPassWord == "undefined") {
+          Toast({
+            message: "请输入用户密码",
+            position: 'middle',
+            duration: 5000
+          });
+          return
+        }
         var params = _this.userInfo;
         //密码加密
         params.userPassWord = base.encryptionData(_this.userInfo.userPassWord);
         _this.$axios.post(selectUrl, params).then(res => {
-          console.log(res);
+          _this.addUserInfoFlag = res.data.length == 0 ? true : false;
         })
       },
       //添加用户
@@ -109,7 +126,7 @@
             _this.queryAllUserInfo()
           })
           .catch((err) => {
-            _this.Toast({
+            Toast({
               message: err,
               position: 'bottom',
               duration: 5000
