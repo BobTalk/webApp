@@ -18,7 +18,8 @@
       <label>真实名</label>
       <input type="text" v-model.trim="userInfo.realName">
     </div>
-    <mt-button type="primary" @click="addData">注&nbsp;&nbsp;&nbsp;&nbsp;册</mt-button>
+    <mt-button v-if="loginFlag" type="primary" @click="addData('0')">注&nbsp;&nbsp;&nbsp;&nbsp;册</mt-button>
+    <mt-button v-else type="primary" @click="addData('1')">登&nbsp;&nbsp;&nbsp;&nbsp;录</mt-button>
   </div>
 </template>
 
@@ -35,7 +36,8 @@
           userName: '',
           userPassWord: '',
           realName: ''
-        }
+        },
+        loginFlag: true
       }
     },
     created() {
@@ -51,8 +53,27 @@
           _this.result = res.data
         })
       },
-      //注册用户
-      addData() {
+      //注册、登录用户
+      addData(data) {
+        if (data == "0") {
+          this.addUserInfo()
+        } else {
+          this.loginUserInfo()
+        }
+      },
+      //查登录
+      loginUserInfo() {
+        var _this = this;
+        var selectUrl = this.URL.BASEURL + this.URL.ADDUSER.SELECTUSER;
+        var params = _this.userInfo;
+        //密码加密
+        params.userPassWord = base.encryptionData(_this.userInfo.userPassWord);
+        _this.$axios.post(selectUrl, params).then(res => {
+          console.log(res);
+        })
+      },
+      //添加用户
+      addUserInfo() {
         var _this = this;
         var insertUrl = this.URL.BASEURL + this.URL.ADDUSER.ADDINFO;
         if (_this.userInfo.userName == "" || _this.userInfo.userName == "undefined") {
@@ -84,6 +105,7 @@
               userPassWord: "",
               realName: ""
             };
+            _this.loginFlag = !_this.loginFlag;
             _this.queryAllUserInfo()
           })
           .catch((err) => {

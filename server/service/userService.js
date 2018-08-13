@@ -21,6 +21,13 @@ module.exports = {
       res.json(result)
     })
   },
+  //查询用户信息
+  selectUserService: function (req, res, next) {
+    var param = req.body || req.params || req.query;
+    return userDao.selectUserInfo(mapping.mappingDicInsert(param), (result) => {
+      res.json(result)
+    })
+  },
   //修改用户信息
   updateUserService: function (req, res, next) {
 

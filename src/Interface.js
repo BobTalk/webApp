@@ -16,7 +16,8 @@ Vue.prototype.URL = {
   },
   ADDUSER: {
     ADDINFO: "/users/add",
-    DELETEINFO:"/users/delete"
+    DELETEINFO:"/users/delete",
+    SELECTUSER:"/users/select"
   }
 };
 /*axios.interceptors.request.use((config) => {

@@ -11,6 +11,10 @@ router.post("/add", function (req, res, next) {
 });
 //删除用户信息
 router.post("/delete", function (req, res, next) {
-userService.deleteUserService(req,res,next)
+  userService.deleteUserService(req, res, next)
+});
+//查询用户信息
+router.post("/select", function (req, res, next) {
+  userService.selectUserService(req, res, next)
 });
 module.exports = router;

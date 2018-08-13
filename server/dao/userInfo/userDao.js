@@ -7,7 +7,8 @@ module.exports = {
     })
   },
   addUserInfo: (params, callback) => {
-    $mysql.query($sql.insert, [params.USER_NAME, params.USER_PASSWORD, params.REAL_NAME], function (res) {
+    paramArr = [params.USER_NAME, params.USER_PASSWORD, params.REAL_NAME];
+    $mysql.query($sql.insert, paramArr, function (res) {
       if (res) {
         callback(res)
       }
@@ -15,6 +16,15 @@ module.exports = {
   },
   deleteUserInfo: (params, callback) => {
     $mysql.query($sql.delete, [params.USER_ID], function (res) {
+      callback(res)
+    })
+  },
+  selectUserInfo: (params, callback) => {
+    paramsA = [
+      params.USER_NAME,
+      params.USER_PASSWORD
+    ];
+    $mysql.query($sql.select, paramsA, function (res) {
       callback(res)
     })
   }
