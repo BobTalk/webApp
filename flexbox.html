@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>flex</title>
+  <style lang="less">
+    .flex-box {
+      display: flex;
+      border: 1px solid #f3f3f3;
+      padding: 10px;
+      flex-direction: row; /*盒子显示位置 row column*/
+      justify-content: space-between; /*平分列*/
+      align-items: center;
+      flex-wrap: nowrap; /*一行显示不下 不予许折行*/
+    }
+
+    .order {
+      order: 1; /*默认为0 排列顺序 数值越小越靠前*/
+    }
+
+    .grow {
+      flex-grow: 1 /*默认为0 放大比例 在剩余空间部分*/;
+    }
+
+    .shrink {
+      flex-shrink: 2; /*默认1 缩小比例 空间不足时 项目将缩小*/
+    }
+
+    .base {
+      flex-basis: 30%; /*在剩余空间中 占比一列中的百分比*/
+    }
+
+    .self {
+      align-self: center; /*可定义当个对象的对齐方式 看覆盖align-item属性*/
+    }
+
+    .w100 {
+      width: 100px;
+    }
+
+    .h100 {
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+<div class="flex-box">
+  <div class="w100 h100 shrink" style="background: red">1</div>
+  <div class="w100 h100 shrink" style="background: blue;">2</div>
+  <div class="w100 h100 shrink" style="background: yellow">3</div>
+</div>
+</body>
+</html>
+
