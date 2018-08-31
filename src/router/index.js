@@ -11,13 +11,14 @@ const router = new Router({
     {
       path: '/',
       name: 'login',
-      component:(resolve) => require.ensure([], () => resolve(require("../components/common/login")), 'login'),
+      component: (resolve) => require.ensure([], () => resolve(require("../components/common/login")), 'login'),
       meta: {title: '登录'}
     },
     {
       path: '/search',
       name: 'search',
-      component: (resolve) => require.ensure([], () => resolve(require("../components/pages/search")), 'search')
+      component: (resolve) => require.ensure([], () => resolve(require("../components/pages/search")), 'search'),
+      meta: {title: 'vuex-demo'}
     }
   ]
 });

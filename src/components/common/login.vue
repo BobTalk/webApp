@@ -87,6 +87,10 @@
         params.userPassWord = base.encryptionData(_this.userInfo.userPassWord);
         _this.$axios.post(selectUrl, params).then(res => {
           _this.addUserInfoFlag = res.data.length == 0 ? true : false;
+          _this.$router.push({
+            name: "search",
+            query: {id: "333333"}
+          })
         })
       },
       //添加用户

@@ -3,7 +3,8 @@ var router = express.Router();
 var userService = require("../service/userService");
 //获取所有用户信息
 router.get('/', function (req, res, next) {
-  userService.queryAllService(req, res, next)
+  userService.queryAllService(req, res, next);
+  // res.send('index', {data: {Aacute: "klklk"}, title: "userTitle"})
 });
 //添加用户信息
 router.post("/add", function (req, res, next) {

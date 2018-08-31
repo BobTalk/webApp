@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var fs = require('fs');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -31,15 +32,15 @@ app.all('*', function (req, res, next) {
     /*让options请求快速返回*/
     res.send(200);
   }
-  else {/*
-    /!*防止异步造成多次响应，出现错误*!/
+  else {
+    /*防止异步造成多次响应，出现错误*/
     var _send = res.send;
     var sent = false;
     res.send = function (data) {
       if (sent) return;
       _send.bind(res)(data);
       sent = true;
-    };*/
+    };
     next();
   }
 });

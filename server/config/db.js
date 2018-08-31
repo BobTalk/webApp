@@ -13,7 +13,7 @@ db.query = function (sqlCall, paras = {}, callback) {
   var connection = mysql.createConnection(mysqlConfig);
   connection.connect((err) => {
     if (err) {
-      console.log(err);
+      throw new Error(err);
       return
     }
   });
@@ -23,14 +23,14 @@ db.query = function (sqlCall, paras = {}, callback) {
   }
   connection.query(sql, paras, function (err, rows, fields) {
     if (err) {
-      console.log(err);
+      throw new Error(err);
       return
     }
     callback(rows);
   });
   connection.end(function (err) {
     if (err) {
-      console.log(err);
+       throw new Error(err);
       return
     } else {
       console.log("链接关闭");
