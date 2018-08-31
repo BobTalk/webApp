@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>发布订阅模式</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta name="description" content="发布订阅模式">
+  <meta name="keywords" content="发布订阅模式">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    // 观察者: 就是事件模式，比如按钮的onclick这样的应用.function
+    function Publisher() {
+      this.listeners = [];
+    }
+
+    Publisher.prototype = {
+      addListener: function (listener) {
+        this.listeners.push(listener);
+      },
+
+      removeListener: function (listener) {
+        delete this.listeners[listener];
+      },
+
+      notify: function (data) {
+        for (var i = 0; i < this.listeners.length; i++) {
+          var listener = this.listeners[i];
+          console.log(i);
+          if (typeof listener !== 'undefined') {
+            // console.log(JSON.stringify(listener));
+            listener.processFN(data);
+          }
+        }
+      }
+    };
+
+    // 发布者
+    function Subscriber() {
+    }
+
+    Subscriber.prototype = {
+      processFN: function (obj) {
+        // console.log(obj);
+      }
+    };　// 订阅者
+
+    var publisher = new Publisher();
+    //实例把原型上所有的方法属性全部打包带走
+    publisher.addListener(new Subscriber());
+    publisher.addListener(new Subscriber());
+     // console.log(publisher.listeners);
+    publisher.notify('2 subscribers will both perform process'); // 发布一个字符串到所有订阅者
+    publisher.notify({name: 'michaelqin', age: 30}); // 发布一个对象到所有订阅者
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
